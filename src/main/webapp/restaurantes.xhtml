@@ -1,7 +1,8 @@
-<!DOCTYPE>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     
 <h:head>  
 	<title>Pantalla Restaurantes</title>
@@ -11,29 +12,62 @@
 <h:body>
 		
 	<!-- ::::::::::::: AGREGA AQUI LA TABLA DE RESTAURANTES ::::::::::::::::::: -->
-	
-	<h:dataTable id = "tblRestaurantes" var = "restaurante" 
+	<h:form>
+	<p:dataTable id = "tblRestaurantes" var = "restaurante" 
 	value = "#{restauranteController.restaurantes}"
-	headerClass = "headerTable"
-	rowClasses = "rowTable rowTableLine">
-		<h:column>
-			<f:facet name = "header">Nombre</f:facet>
-			<h:outputText value = "#{restaurante.nombre}"></h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name = "header">Direccion</f:facet>
-			<h:outputText value = "#{restaurante.direccion}"></h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name = "header">Pais</f:facet>
-			<h:outputText value = "#{restaurante.pais}"></h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name = "header">Gerente</f:facet>
-			<h:outputText value = "#{restaurante.gerente.nombre} #{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}"></h:outputText>
-		</h:column>
-	</h:dataTable>
+	paginator="true" paginatorPosition="bottom"
+    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+    {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} registros"
+    rowsPerPageTemplate="4,10,15" rows  = "2"
+    filteredValue="#{restauranteController.restaurantesFiltrados}"  reflow="true">
+	
+	<f:facet name="{Exporters}">
+    		<div class="flex justify-content-between">
+    		
+                <p:commandButton name = "imgs/xls.png" width = "24%">
+                    <p:dataExporter type="xls" target="tblRestaurantes" fileName="Restaurantes"/>
+                </p:commandButton>
 
+                <p:commandButton name = "imgs/xlsx.png" width = "24%">
+                    <p:dataExporter type="xlsxstream" target="tblRestaurantes" fileName="Restaurantes"/>
+                </p:commandButton>
+
+                <p:commandButton name = "resorces/imgs/pdf.png" width = "24%">
+                    <p:dataExporter type="pdf" target="tblRestaurantes" fileName="Restaurantes"/>
+                </p:commandButton>
+
+                <p:commandButton name = "imgs/csv.png" width = "24%">
+                    <p:dataExporter type="csv" target="tblRestaurantes" fileName="Restaurantes" />
+                </p:commandButton>
+
+                <p:commandButton name = "imgs/xml.png" width = "24%">
+                    <p:dataExporter type="xml" target="tblRestaurantes" fileName="Restaurantes"/>
+                </p:commandButton>
+
+                <p:commandButton name = "imgs/user.png" width = "24%">
+                    <p:dataExporter type="txt" target="tblRestaurantes" fileName="Restaurantes"/>
+                </p:commandButton>
+                
+            </div>
+         </f:facet>
+	
+		<p:column headerText="Nombre"  filterBy = "#{restaurante.nombre}" filterMatchMode = "contains"
+		sortBy = "#{restaurante.nombre}">
+			<h:outputText value = "#{restaurante.nombre}"></h:outputText>
+		</p:column>
+		<p:column headerText="Direccion">
+			<h:outputText value = "#{restaurante.direccion}"></h:outputText>
+		</p:column>
+		<p:column headerText="Pais"  filterBy = "#{restaurante.pais}" filterMatchMode = "contains"
+		sortBy = "#{restaurante.pais}">
+			<h:outputText value = "#{restaurante.pais}"></h:outputText>
+		</p:column>
+		<p:column headerText="Gerente">
+			<h:outputText value = "#{restaurante.gerente.nombre} #{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}"></h:outputText>
+		</p:column>
+	</p:dataTable>
+	</h:form>
 </h:body>
 
 </html>
