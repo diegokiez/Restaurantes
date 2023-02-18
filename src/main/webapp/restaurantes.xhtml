@@ -25,29 +25,35 @@
 	<f:facet name="{Exporters}">
     		<div class="flex justify-content-between">
     		
-                <p:commandButton name = "imgs/xls.png" width = "24%">
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/excel.png" width="30"/>
                     <p:dataExporter type="xls" target="tblRestaurantes" fileName="Restaurantes"/>
-                </p:commandButton>
+                </h:commandLink>
 
-                <p:commandButton name = "imgs/xlsx.png" width = "24%">
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/xlsx.png" width="30"/>
                     <p:dataExporter type="xlsxstream" target="tblRestaurantes" fileName="Restaurantes"/>
-                </p:commandButton>
+                </h:commandLink>
 
-                <p:commandButton name = "resorces/imgs/pdf.png" width = "24%">
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/pdf.png" width="30"/>
                     <p:dataExporter type="pdf" target="tblRestaurantes" fileName="Restaurantes"/>
-                </p:commandButton>
+                </h:commandLink>
 
-                <p:commandButton name = "imgs/csv.png" width = "24%">
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/csv.png" width="30"/>
                     <p:dataExporter type="csv" target="tblRestaurantes" fileName="Restaurantes" />
-                </p:commandButton>
-
-                <p:commandButton name = "imgs/xml.png" width = "24%">
+                </h:commandLink>
+                
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/xml.png" width="30"/>
                     <p:dataExporter type="xml" target="tblRestaurantes" fileName="Restaurantes"/>
-                </p:commandButton>
-
-                <p:commandButton name = "imgs/user.png" width = "24%">
+                </h:commandLink>
+                
+                <h:commandLink>
+                <h:graphicImage url = "/resources/imgs/user.png" width="30"/>
                     <p:dataExporter type="txt" target="tblRestaurantes" fileName="Restaurantes"/>
-                </p:commandButton>
+                </h:commandLink>
                 
             </div>
          </f:facet>
